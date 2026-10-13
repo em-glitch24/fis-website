@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initGallery();
   initLightbox();
   initEvents();
+  initEventsCollapse();
   initContactModal();
   initScrollReveal(reduceMotion);
   initScrollspy();
@@ -175,51 +176,74 @@ function initGallery() {
   initGalleryLoop(gallery, viewport, track);
 }
 
-/* Phone mode: photos sit around the center one, wrap around forever,
-   and can be dragged left or right. */
+/* Mountain gallery: the center photo is the biggest and photos shrink toward
+   the edges. No looping. It opens on a middle photo so the first view is
+   symmetrical, and stops at the first and last photo.
+   Drag, click a side photo, or use the arrow keys to move. */
 function initGalleryLoop(gallery, viewport, track) {
   const items = Array.from(track.querySelectorAll(".gallery-item"));
   const n = items.length;
-  if (n < 5) return; // too few photos to loop nicely
+  if (n < 2) return;
 
-  const mq = window.matchMedia("(max-width: 560px)");
-  const half = Math.floor(n / 2);
+  // Mountain shape controls
+  const START = 4; // which photo shows in the center first (1 = first photo, 4 = fourth)
+  const SHRINK = 0.22; // how much smaller each step away from the center gets
+  const MIN_SCALE = 0.35; // smallest a photo can get
+  const GAP = 0.03; // space between photos (fraction of the center photo width)
 
-  let current = 0;
-  let enabled = false;
+  // How many photos show on each side of the center one
+  const phone = window.matchMedia("(max-width: 560px)");
+  const reach = () => (phone.matches ? 1 : 2); // phones: 3 photos, larger screens: 5
 
-  // Where each photo sits relative to the center: ..., -1, 0, 1, ...
-  const offsetOf = (i) => ((((i - current + half) % n) + n) % n) - half;
+  const clamp = (i) => Math.max(0, Math.min(n - 1, i));
+
+  const scaleOf = (a) => Math.max(MIN_SCALE, 1 - a * SHRINK);
+
+  // Distance from the center, in center-photo widths, so shrunk photos stay evenly spaced
+  const positionOf = (off) => {
+    let x = 0;
+    for (let k = 1; k <= Math.abs(off); k++) {
+      x += scaleOf(k - 1) / 2 + GAP + scaleOf(k) / 2;
+    }
+    return Math.sign(off) * x;
+  };
+
+  // Start in the middle, but never so close to an end that the first view is lopsided
+  const r = Math.min(reach(), Math.floor((n - 1) / 2));
+  let current = Math.max(r, Math.min(n - 1 - r, START - 1));
 
   function render(skipAnimation = false) {
-    items.forEach((item, i) => {
-      const off = offsetOf(i);
-      const prev = Number(item.dataset.offset);
-      const jumped = !Number.isNaN(prev) && Math.abs(off - prev) > 1;
+    const visible = reach();
 
-      // A photo wrapping from one end to the other should not fly across the screen
-      if (skipAnimation || jumped) {
+    items.forEach((item, i) => {
+      const off = i - current; // no wrap-around
+      const abs = Math.abs(off);
+
+      if (skipAnimation) {
         item.classList.add("no-anim");
         requestAnimationFrame(() =>
           requestAnimationFrame(() => item.classList.remove("no-anim")),
         );
       }
 
-      item.dataset.offset = off;
-      item.style.setProperty("--offset", off);
+      item.style.setProperty("--tx", positionOf(off));
+      item.style.setProperty("--scale", scaleOf(abs));
+      item.style.zIndex = String(20 - abs);
       item.classList.toggle("is-active", off === 0);
-      item.classList.toggle("is-far", Math.abs(off) >= 3);
+      item.classList.toggle("is-far", abs > visible);
       item.tabIndex = off === 0 ? 0 : -1;
     });
   }
 
   function move(delta) {
-    current = (((current + delta) % n) + n) % n;
+    const next = clamp(current + delta);
     track.style.setProperty("--drag", "0px");
+    if (next === current) return; // already at the first or last photo
+    current = next;
     render();
   }
 
-  /* ----- Dragging ----- */
+  /* ----- Dragging (mouse and touch) ----- */
   let startX = 0;
   let startTime = 0;
   let dx = 0;
@@ -227,7 +251,7 @@ function initGalleryLoop(gallery, viewport, track) {
   let suppressClickUntil = 0;
 
   function onDown(e) {
-    if (!enabled || !e.isPrimary) return;
+    if (!e.isPrimary) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
     startX = e.clientX;
     startTime = performance.now();
@@ -240,7 +264,14 @@ function initGalleryLoop(gallery, viewport, track) {
 
   function onMove(e) {
     const limit = viewport.clientWidth * 0.8;
-    dx = Math.max(-limit, Math.min(limit, e.clientX - startX));
+    let raw = Math.max(-limit, Math.min(limit, e.clientX - startX));
+
+    // At the first or last photo, dragging further feels stiff
+    const atStart = current === 0 && raw > 0;
+    const atEnd = current === n - 1 && raw < 0;
+    if (atStart || atEnd) raw *= 0.3;
+
+    dx = raw;
     if (!moved && Math.abs(dx) > 6) {
       moved = true;
       track.classList.add("is-dragging");
@@ -261,7 +292,7 @@ function initGalleryLoop(gallery, viewport, track) {
     const far = Math.abs(dx) > 50 || (Math.abs(dx) > 20 && fast);
 
     if (commit && moved && far) {
-      move(dx < 0 ? 1 : -1); // swipe left shows the next photo
+      move(dx < 0 ? 1 : -1); // drag left shows the next photo
     } else {
       track.style.setProperty("--drag", "0px"); // snap back
     }
@@ -271,13 +302,11 @@ function initGalleryLoop(gallery, viewport, track) {
 
   viewport.addEventListener("pointerdown", onDown);
 
-  // Tapping: a side photo moves to the center, the center photo opens the lightbox.
-  // A tap that ends a drag does neither.
+  // Clicking: a side photo moves to the center, the center photo opens the lightbox.
+  // A click that ends a drag does neither.
   viewport.addEventListener(
     "click",
     (e) => {
-      if (!enabled) return;
-
       if (performance.now() < suppressClickUntil) {
         e.stopPropagation();
         e.preventDefault();
@@ -296,36 +325,16 @@ function initGalleryLoop(gallery, viewport, track) {
   );
 
   gallery.addEventListener("keydown", (e) => {
-    if (!enabled) return;
     if (e.key === "ArrowLeft") move(-1);
     if (e.key === "ArrowRight") move(1);
   });
 
-  /* ----- Switch on for phones, off for larger screens ----- */
-  function enable() {
-    if (enabled) return;
-    enabled = true;
-    gallery.classList.add("is-loop");
-    viewport.scrollLeft = 0;
-    render(true);
-  }
+  // Re-draw when the screen crosses the phone size (3 photos vs 5)
+  phone.addEventListener("change", () => render(true));
 
-  function disable() {
-    if (!enabled) return;
-    enabled = false;
-    gallery.classList.remove("is-loop");
-    track.style.removeProperty("--drag");
-    items.forEach((item) => {
-      item.classList.remove("is-active", "is-far", "no-anim");
-      item.style.removeProperty("--offset");
-      item.removeAttribute("data-offset");
-      item.removeAttribute("tabindex");
-    });
-  }
-
-  const sync = () => (mq.matches ? enable() : disable());
-  sync();
-  mq.addEventListener("change", sync);
+  gallery.classList.add("is-loop");
+  viewport.scrollLeft = 0;
+  render(true);
 }
 
 /* ---------- Lightbox: any element with data-full opens its image ---------- */
@@ -404,6 +413,60 @@ function initEvents() {
   document.querySelectorAll("[data-placeholder]").forEach((link) => {
     link.addEventListener("click", (e) => e.preventDefault());
   });
+}
+
+/* ---------- Events: collapse / expand on mobile (collapsed by default) ---------- */
+function initEventsCollapse() {
+  const rows = Array.from(document.querySelectorAll(".ev-row"));
+  if (!rows.length) return;
+
+  const mq = window.matchMedia("(max-width: 859px)");
+
+  function enable() {
+    rows.forEach((row) => {
+      const title = row.querySelector(".ev-name");
+      if (!title || row.classList.contains("is-collapsible")) return;
+
+      // Remember the original title text so it can be restored on desktop
+      title.dataset.title = title.textContent.replace(/\s+/g, " ").trim();
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ev-toggle";
+      btn.setAttribute("aria-expanded", "false");
+
+      const label = document.createElement("span");
+      label.textContent = title.dataset.title;
+
+      const icon = document.createElement("span");
+      icon.className = "ev-toggle-icon";
+      icon.setAttribute("aria-hidden", "true");
+
+      btn.append(label, icon);
+      btn.addEventListener("click", () => {
+        const open = row.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(open));
+      });
+
+      title.textContent = "";
+      title.appendChild(btn);
+      row.classList.add("is-collapsible");
+      row.classList.remove("is-open");
+    });
+  }
+
+  function disable() {
+    rows.forEach((row) => {
+      const title = row.querySelector(".ev-name");
+      if (!title || !row.classList.contains("is-collapsible")) return;
+      title.textContent = title.dataset.title || title.textContent;
+      row.classList.remove("is-collapsible", "is-open");
+    });
+  }
+
+  const sync = () => (mq.matches ? enable() : disable());
+  sync();
+  mq.addEventListener("change", sync);
 }
 
 /* ---------- Contact modal (opens the visitor's email app) ---------- */
