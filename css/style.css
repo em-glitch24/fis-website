@@ -505,7 +505,7 @@ button {
   padding: 72px 0 90px;
   background:
     linear-gradient(rgba(7, 21, 39, 0.78), rgba(7, 21, 39, 0.78)),
-    url("../assets/bg1.jpg") center center / cover no-repeat;
+    url("../assets/leaderbgg.jpg") center center / cover no-repeat;
   overflow: hidden;
   color: var(--white);
 }
@@ -1783,30 +1783,44 @@ button {
   }
 }
 
-.about#about {
-  /* Colors as R, G, B so the strength can be tuned in one place */
-  --about-blue: 16, 42, 107;
-  --about-red: 206, 17, 38;
-  --about-gold: 201, 162, 39;
+.about {
+  /* Tint controls: change these two lines to adjust the look */
+  --about-tint: 255, 255, 255; /* R, G, B of the tint color */
+  --about-tint-strength: 0.94; /* 0 = image fully visible, 1 = solid color */
 
-  /* 0 = no color, 0.16 = subtle, 0.3 = bold */
-  --about-strength: 0.16;
+  background-image:
+    linear-gradient(
+      rgba(var(--about-tint), var(--about-tint-strength)),
+      rgba(var(--about-tint), var(--about-tint-strength))
+    ),
+    url("../assets/aboutbg2.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
-  background-color: #f7f8fc;
+.events-section#events {
+  --events-blue: 16, 42, 107;
+  --events-red: 206, 17, 38;
+  --events-gold: 201, 162, 39;
+
+  /* 0 = no color, 0.14 = subtle, 0.3 = bold */
+  --events-strength: 0.14;
+
+  background-color: #eef1f8;
   background-image:
     radial-gradient(
-      60% 50% at 0% 0%,
-      rgba(var(--about-blue), calc(var(--about-strength) * 1.4)) 0%,
+      55% 45% at 100% 0%,
+      rgba(var(--events-blue), calc(var(--events-strength) * 1.5)) 0%,
       transparent 70%
     ),
     radial-gradient(
-      55% 45% at 100% 100%,
-      rgba(var(--about-red), var(--about-strength)) 0%,
+      50% 40% at 0% 100%,
+      rgba(var(--events-gold), calc(var(--events-strength) * 1.1)) 0%,
       transparent 70%
     ),
-    radial-gradient(
-      40% 35% at 100% 0%,
-      rgba(var(--about-gold), calc(var(--about-strength) * 0.9)) 0%,
-      transparent 70%
+    linear-gradient(
+      0deg,
+      rgba(var(--events-red), calc(var(--events-strength) * 0.5)) 0%,
+      transparent 35%
     );
 }
