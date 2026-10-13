@@ -1824,3 +1824,66 @@ button {
       transparent 35%
     );
 }
+@media (max-width: 760px) {
+  .hero .hero-info-card {
+    top: 16px; /* sits at the top; change to move it */
+    bottom: auto;
+    left: auto;
+    right: 0;
+    width: 220px;
+    max-width: 220px;
+
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+
+    /* hidden state: parked off the right edge */
+    transform: translateX(110%);
+    opacity: 0;
+    transition:
+      transform 0.6s ease,
+      opacity 0.6s ease;
+  }
+
+  /* shown state: the script adds is-visible while the hero is on screen */
+  .hero .hero-info-card.is-visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .hero .hero-info-media {
+    flex: none;
+    width: 44px;
+    padding: 0;
+  }
+  .hero .hero-info-media img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+  }
+
+  .hero .hero-info-content {
+    padding: 0;
+    gap: 4px;
+  }
+  .hero .hero-info-title {
+    margin: 0;
+    font-size: 0.68rem;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+  }
+
+  /* date and venue are on the poster, so hide them on phones */
+  .hero .hero-info-row {
+    display: none;
+  }
+
+  .hero .hero-info-content .btn {
+    align-self: flex-start;
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+  }
+}
