@@ -1,1 +1,833 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=pages/home.html"></head><body></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filipino Inventors Society, Inc.</title>
+    <meta
+      name="description"
+      content="Filipino Inventors Society, Inc. — advancing Philippine indigenous technology and innovation since 1943."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./assets/fislogo1.png" />
+    <link rel="apple-touch-icon" href="./assets/fislogo1.png" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header" id="site-header">
+      <div class="container header-inner">
+        <a href="./" class="brand">
+          <img
+            src="./assets/fislogo1.png"
+            alt="Filipino Inventors Society logo"
+            class="brand-mark"
+          />
+          <span class="brand-name">Filipino Inventors<br />Society</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="primaryNav"
+          aria-label="Toggle navigation menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="primary-nav" id="primaryNav">
+          <ul>
+            <li><a href="./" data-nav="hero">Home</a></li>
+            <li><a href="#leadership" data-nav="leadership">Leaders</a></li>
+            <li><a href="#about" data-nav="about">About</a></li>
+            <li><a href="#events" data-nav="events">Events</a></li>
+            <li><a href="#site-footer" data-nav="site-footer">Contact</a></li>
+          </ul>
+          <a
+            class="btn btn-gold nav-cta"
+            href="https://docs.google.com/forms/d/1V0Ar0K0_edxqZW4liGG-Nz8_9m23KHhDgWlwaeDabuo/viewform"
+            target="_blank"
+            rel="noopener"
+            >Join Us</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section
+        class="hero"
+        id="hero"
+        aria-roledescription="carousel"
+        aria-label="Featured highlights"
+      >
+        <div class="hero-track" id="heroTrack">
+          <div class="hero-slide is-active" data-slide="0">
+            <img src="./assets/img1.jpg" alt="" />
+          </div>
+          <div class="hero-slide" data-slide="1">
+            <img src="./assets/img2.jpg" alt="" />
+          </div>
+          <div class="hero-slide" data-slide="2">
+            <img src="./assets/img3.jpg" alt="" />
+          </div>
+          <div class="hero-slide" data-slide="3">
+            <img src="./assets/img4.jpg" alt="" />
+          </div>
+          <div class="hero-slide" data-slide="4">
+            <img src="./assets/img5.jpg" alt="" />
+          </div>
+        </div>
+
+        <div class="hero-fade"></div>
+        <div class="hero-corner hero-corner-tl"></div>
+        <div class="hero-corner hero-corner-br"></div>
+
+        <div class="hero-content container">
+          <p class="eyebrow"><span class="eyebrow-bar"></span>Est. 1943</p>
+          <h1 class="hero-title">
+            Filipino ingenuity, protected, and championed.
+          </h1>
+          <p class="hero-desc">
+            The Philippines' oldest organization of patent-holding inventors,
+            advancing Filipino indigenous technology and innovation since 1943.
+          </p>
+        </div>
+
+        <button class="hero-arrow" id="heroPrev" aria-label="Previous slide">
+          ←
+        </button>
+        <button class="hero-arrow" id="heroNext" aria-label="Next slide">
+          →
+        </button>
+
+        <div class="hero-info-card">
+          <div class="hero-info-media">
+            <img
+              src="./assets/fislogo1.png"
+              alt="FIS 76th anniversary celebration"
+            />
+          </div>
+          <div class="hero-info-content">
+            <h4 class="hero-info-title">Contact Info</h4>
+            <p class="hero-info-row">
+              <span>Location:</span> TAPI Building, DOST Compound, Taguig
+            </p>
+            <p class="hero-info-row"><span>Email:</span> info@fis.com.ph</p>
+            <p class="hero-info-row"><span>Phone:</span> +632 8 542-2343</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== LEADERSHIP ===================== -->
+      <section
+        class="leadership"
+        id="leadership"
+        aria-roledescription="carousel"
+        aria-label="FIS Leadership"
+        tabindex="0"
+      >
+        <div class="container">
+          <div class="leadership-heading">
+            <p class="eyebrow leadership-eyebrow">
+              <span class="eyebrow-bar"></span>
+              Leadership &amp; Legacy
+            </p>
+
+            <h2 class="leadership-title">Our Leaders</h2>
+          </div>
+
+          <div class="leadership-carousel">
+            <!-- MEDIA -->
+            <div class="leadership-media reveal from-left">
+              <!-- Person 2 -->
+              <div class="leadership-media-item" data-person="1">
+                <img
+                  src="./assets/national-pres.jpg"
+                  alt="Ronald P. Pagsanghan"
+                />
+              </div>
+
+              <!-- Person 3 -->
+              <div
+                class="leadership-media-item leadership-video"
+                data-person="2"
+              >
+                <iframe
+                  src="https://www.youtube.com/embed/7unODmt1-wI?rel=0"
+                  title="Dir. Edgar Garcia"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                  frameborder="0"
+                ></iframe>
+                <a
+                  class="video-fallback"
+                  href="https://www.youtube.com/watch?v=7unODmt1-wI"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Watch on YouTube ↗
+                </a>
+              </div>
+
+              <!-- Person 4 -->
+              <div
+                class="leadership-media-item leadership-video"
+                data-person="3"
+              >
+                <iframe
+                  src="https://www.youtube.com/embed/nIx-jIrEJa0?rel=0"
+                  title="Dr. Benjamin Santos"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                  frameborder="0"
+                ></iframe>
+                <a
+                  class="video-fallback"
+                  href="https://www.youtube.com/watch?v=7unODmt1-wI"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Watch on YouTube ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- PROFILE INFORMATION -->
+            <div
+              class="leadership-info reveal from-right"
+              style="--reveal-delay: 0.15s"
+            >
+              <!-- Person 2 -->
+              <article class="leadership-profile" data-person="1">
+                <p class="leadership-role">National President</p>
+
+                <h3>Ronald P. Pagsanghan</h3>
+
+                <p class="leadership-contribution">
+                  Inventor of Unsinkable Porta Boat
+                </p>
+
+                <p class="leadership-description">
+                  A Filipino inventor and FIS leader whose work contributes to
+                  the development and promotion of Filipino innovation.
+                </p>
+              </article>
+
+              <!-- Person 3 -->
+              <article class="leadership-profile" data-person="2">
+                <p class="leadership-role">TAPI-DOST Director</p>
+
+                <h3>Dir. Edgar Garcia</h3>
+
+                <p class="leadership-contribution">
+                  Technology Application and Promotion Institute
+                </p>
+
+                <p class="leadership-description">
+                  A key figure in the Philippine innovation ecosystem,
+                  supporting the promotion and application of local technologies
+                  and inventions.
+                </p>
+              </article>
+
+              <!-- Person 4 -->
+              <article class="leadership-profile" data-person="3">
+                <p class="leadership-role">Former National President</p>
+
+                <h3>Dr. Benjamin Santos, PhD</h3>
+
+                <p class="leadership-contribution">
+                  Filipino Inventors Society
+                </p>
+
+                <p class="leadership-description">
+                  Former National President of the Filipino Inventors Society
+                  and contributor to the organization's continuing legacy of
+                  Filipino invention and innovation.
+                </p>
+              </article>
+
+              <!-- NAVIGATION -->
+              <div class="leadership-navigation">
+                <button
+                  class="leadership-arrow"
+                  id="leadershipPrev"
+                  aria-label="Previous leader"
+                >
+                  ←
+                </button>
+
+                <div class="leadership-counter">
+                  <span id="leadershipCurrent">01</span>
+                  <span class="leadership-counter-line"></span>
+                  <span>04</span>
+                </div>
+
+                <button
+                  class="leadership-arrow"
+                  id="leadershipNext"
+                  aria-label="Next leader"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===================== ABOUT + GALLERY ===================== -->
+      <section class="about" id="about">
+        <div class="container">
+          <div class="about-heading reveal from-bottom">
+            <p class="eyebrow about-eyebrow">
+              <span class="eyebrow-bar"></span>
+              About FIS
+            </p>
+            <h2 class="about-title">Filipino Inventors Society.</h2>
+            <p class="about-intro">By JGJPagsanghan posted May 26, 2021</p>
+          </div>
+
+          <!-- GALLERY CAROUSEL -->
+          <div class="gallery">
+            <button
+              class="gallery-arrow"
+              id="galleryPrev"
+              aria-label="Previous photos"
+            >
+              ←
+            </button>
+
+            <div class="gallery-viewport">
+              <div class="gallery-track" id="galleryTrack">
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery1.jpg"
+                  style="--reveal-delay: 0s"
+                >
+                  <img
+                    src="./assets/gallery1.jpg"
+                    alt="FIS members at a National Inventors Week ceremony"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery2.jpg"
+                  style="--reveal-delay: 0.06s"
+                >
+                  <img
+                    src="./assets/gallery2.jpg"
+                    alt="FIS ribbon-cutting ceremony"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery3.jpg"
+                  style="--reveal-delay: 0.12s"
+                >
+                  <img
+                    src="./assets/gallery3.jpg"
+                    alt="FIS 76th anniversary celebration"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery4.jpg"
+                  style="--reveal-delay: 0.18s"
+                >
+                  <img
+                    src="./assets/gallery4.jpg"
+                    alt="FIS members and guests"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery5.jpg"
+                  style="--reveal-delay: 0.24s"
+                >
+                  <img
+                    src="./assets/gallery5.jpg"
+                    alt="FIS awarding ceremony"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery6.jpg"
+                  style="--reveal-delay: 0.3s"
+                >
+                  <img
+                    src="./assets/gallery6.jpg"
+                    alt="FIS event program presentation"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery7.jpg"
+                  style="--reveal-delay: 0.36s"
+                >
+                  <img
+                    src="./assets/gallery7.jpg"
+                    alt="FIS members receiving recognition"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  data-full="./assets/gallery8.jpg"
+                  style="--reveal-delay: 0.42s"
+                >
+                  <img
+                    src="./assets/gallery8.jpg"
+                    alt="FIS members group photo"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <button
+              class="gallery-arrow"
+              id="galleryNext"
+              aria-label="Next photos"
+            >
+              →
+            </button>
+          </div>
+
+          <!-- HISTORY -->
+          <div
+            class="about-history reveal from-bottom"
+            style="--reveal-delay: 0.1s"
+          >
+            <p>
+              The Filipino Inventors Society (FIS) is a duly registered
+              non-government organization of Filipino inventors who hold patents
+              to their works in the Philippines or abroad. Its membership has
+              been widened to accommodate professionals and entrepreneurs who
+              espouse its cause to develop Philippine indigenous technology and
+              innovations.
+            </p>
+            <p>
+              FIS was established in 1943 by founding fathers Teo Purungganan,
+              Pastor Reyes-Torres, and Dalmacio Buenaventura in the heat of
+              World War II during the Japanese occupation of the Philippines. In
+              the same year, Manuel G. Goyena was inaugurated as the first FIS
+              President in the elections conducted at the Bureau of Science
+              Building in the City of Manila. In 1953, 8 years after the Second
+              World War, FIS was incorporated as a non-stock, non-profit
+              organization.
+            </p>
+            <p>
+              In 1957, FIS hosted the first Philippine National Exhibition of
+              Inventions. This laid the foundations for the Philippine
+              government's awareness about the importance of invention and
+              technological development at the time, leading to the creation of
+              the Philippine Inventors Commission (PIC) in 1964 through Republic
+              Act No. 3850, the "Philippine Inventors Incentives Act."
+            </p>
+            <p>
+              FIS in cooperation with PIC organized the first National Inventors
+              Week in 1967 — a week-long observance where amateur and
+              professional inventors throughout the country competed in a
+              national contest exhibiting their inventions and technologies. NIW
+              continues to this day as FIS's flagship celebration of Filipino
+              ingenuity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== LEGACY + MAP ===================== -->
+      <section class="legacy" id="legacy">
+        <div class="legacy-grid">
+          <div class="legacy-content container reveal from-left">
+            <p class="eyebrow legacy-eyebrow">
+              <span class="eyebrow-bar"></span>
+              Legacy &amp; Global Recognition
+            </p>
+            <h2 class="legacy-title">Filipino Inventors Society</h2>
+
+            <div class="legacy-text">
+              <p>
+                In 1987, Philippine President Corazon Aquino disbanded PIDI.
+                PIDI was functionally succeeded by the Technology Application
+                and Promotion Institute (TAPI) under the Department of Science
+                and Technology (DOST).
+              </p>
+              <p>
+                With President Aquino's rule, PD 1423 was terminated along with
+                its benefits to Filipino inventors and, by extension, the
+                country. But its spirit whose origins can be traced back to 1943
+                was revived with the successful legislation of Republic Act No.
+                7459 or the "Inventor and Inventions Incentives Act of 1992", in
+                which FIS is included among the primary certifying authorities
+                and as the foremost organization in accordance to this Act,
+                having spearheaded this cause from the very beginning. RA 7459
+                and all of its provisions remain active up until this day.
+              </p>
+              <p>
+                Internationally, FIS is the Philippine representative for and
+                serves as a voting member of the International Federation of
+                Inventors' Associations (IFIA), a global organization of
+                inventors and innovators from all corners of the world whose
+                headquarters can be found in Geneva, Switzerland. In addition,
+                FIS was one of the advocates for the ASEAN Patent Treaty or
+                ASEAN Patent Examination Co-operation (ASPEC) which is a
+                coordinated effort for facilitating invention patent development
+                and intellectual property protection between nine ASEAN member
+                states.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="legacy-map reveal from-right"
+            style="--reveal-delay: 0.15s"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.845106493057!2d121.04679387446605!3d14.489135259493962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cf11844b13a5%3A0xa1d8a3cfa3535430!2sFilipino%20Inventors%20Society!5e0!3m2!1sen!2sph!4v1622002675015!5m2!1sen!2sph"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Filipino Inventors Society location map"
+            >
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EVENTS ===================== -->
+      <section class="events" id="events">
+        <div class="container">
+          <div class="events-heading">
+            <p class="eyebrow events-eyebrow">
+              <span class="eyebrow-bar"></span>
+              Announcements &amp; Events
+            </p>
+            <h2 class="events-title">What's happening at FIS.</h2>
+          </div>
+        </div>
+
+        <!-- FEATURED EVENT BANNER -->
+        <div class="event-banner">
+          <div class="event-banner-media">
+            <span class="event-banner-badge">Featured Event</span>
+            <div class="event-banner-frame">
+              <img
+                src="./assets/niw2021.png"
+                alt="NIW 2021: OPHIR event poster"
+              />
+            </div>
+
+            <div class="event-stat-row">
+              <div class="event-stat">
+                <span class="event-stat-value">5</span>
+                <span class="event-stat-label">Days</span>
+              </div>
+              <div class="event-stat">
+                <span class="event-stat-value">13</span>
+                <span class="event-stat-label">Categories</span>
+              </div>
+              <div class="event-stat event-stat-wide">
+                <span class="event-stat-value">Nov 15&ndash;19</span>
+                <span class="event-stat-label">2021</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="event-banner-content reveal from-bottom"
+            style="--reveal-delay: 0.15s"
+          >
+            <div class="event-banner-inner">
+              <h3 class="event-banner-title">NIW 2021: OPHIR</h3>
+              <p class="event-tag">By FIS &middot; Posted October 1, 2021</p>
+
+              <p class="event-banner-desc">
+                A 5-day virtual event which would include webinars and invention
+                contests in thirteen (13) categories: Outstanding Invention
+                (Gawad Teo Purugganan), Outstanding Utility Model (Gawad
+                Pastor-Reyes-Torres), Outstanding Industrial Design (Gawad
+                Dalmacio Buenaventura), Pending Patent (Gawad Manuel G. Goyena),
+                Student Creative Research (Gawad Gregorio Y. Zara), Book Salon
+                Competition (Gawad Sergio Bayan), Visual Arts Competition (Gawad
+                Diosdado Banatao), Innovation Song Writing Composition (Gawad
+                Roberto Del Rosario), Inventalino Contest (Gawad Jose P. Rizal),
+                Outstanding Natural Medicine (Gawad Patrocinio Valenzuela),
+                Outstanding Indigenous Products (Gawad Panday Pira), Outstanding
+                Business Incubation (Gawad Dr. Juan Salcedo Jr), Outstanding
+                Innovation Vlogger (Gawad Manuel P. Manahan), among others. Due
+                date for registration is on October 30, 2021.
+              </p>
+              <a
+                href="https://sites.google.com/view/niw2021/"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-gold"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container events-footer-block">
+          <div class="event-registration">
+            <!-- LEFT: REGISTRATION DETAILS -->
+            <div class="event-details reveal from-left">
+              <div class="event-detail-row">
+                <span class="event-detail-label">Title</span>
+                <span class="event-detail-value"
+                  >(OPHIR) Outstanding Philippine Innovation Revolution</span
+                >
+              </div>
+              <div class="event-detail-row">
+                <span class="event-detail-label">Theme</span>
+                <span class="event-detail-value"
+                  >"Pitching Innovative Products to the Marketplace through
+                  Synergized Partnership"</span
+                >
+              </div>
+              <div class="event-detail-row">
+                <span class="event-detail-label">Dates</span>
+                <span class="event-detail-value">November 15–19, 2021</span>
+              </div>
+              <div class="event-detail-row">
+                <span class="event-detail-label">Eligibility</span>
+                <span class="event-detail-value"
+                  >Open to all Filipino inventors, designers, makers, students,
+                  teachers, and researchers currently living in the
+                  Philippines.</span
+                >
+              </div>
+            </div>
+
+            <!-- RIGHT: TITLE + PRIVACY NOTE + BUTTONS -->
+            <div
+              class="event-registration-content reveal from-right"
+              style="--reveal-delay: 0.15s"
+            >
+              <h3 class="event-registration-title">
+                Contestant Registration to the National Inventors Week (NIW)
+                2021
+              </h3>
+
+              <p class="event-privacy-note">
+                The organizers of NIW respect your right to privacy and are
+                committed to protecting the confidentiality of your personal
+                information. By filling out a registration form, you consent to
+                the collection, processing, and use of the information for
+                purposes of monitoring contest entries and communication on
+                matters relating to NIW activities.
+              </p>
+
+              <div class="event-deadline-notice">
+                <span class="event-deadline-label">Deadline</span>
+                <span class="event-deadline-value"
+                  >All entries due October 31, 2021</span
+                >
+              </div>
+
+              <div class="event-cta-row">
+                <a
+                  href="https://bit.ly/NIW2021contestant"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-gold"
+                  >Contestant Registration</a
+                >
+                <a
+                  href="https://bit.ly/NIW2021attendee"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-ghost-dark"
+                  >Observer / Visitor Registration</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIGHTBOX -->
+      <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+          ×
+        </button>
+        <img src="" alt="" id="lightboxImg" />
+      </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" id="site-footer">
+      <div class="container footer-grid reveal from-bottom">
+        <div class="footer-brand">
+          <img
+            src="./assets/fislogo1.png"
+            alt="Filipino Inventors Society logo"
+            class="footer-logo"
+          />
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Address</h4>
+          <div class="footer-info-row">
+            <svg
+              class="footer-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"
+              />
+              <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
+            <p>
+              Filipino Inventors Society, Inc.<br />TAPI Building DOST
+              Compound,<br />General Santos Avenue, Bicutan,<br />Taguig, Metro
+              Manila, Philippines
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Contacts</h4>
+          <div class="footer-info-row">
+            <svg
+              class="footer-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M4 4h16v16H4z" opacity="0" />
+              <path d="M3 6l9 7 9-7" />
+              <rect x="3" y="5" width="18" height="14" rx="1" />
+            </svg>
+            <p><a href="mailto:info@fis.com.ph">info@fis.com.ph</a></p>
+          </div>
+          <div class="footer-info-row">
+            <svg
+              class="footer-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+            <p><a href="tel:+6328542-2343">+632 8 542-2343</a></p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Links</h4>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://www.ifia.com/ifia-members/full-members/fis-philippines/"
+                target="_blank"
+                rel="noopener"
+                >IFIA</a
+              >
+            </li>
+            <li>
+              <a href="https://www.dost.gov.ph/" target="_blank" rel="noopener"
+                >DOST</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/Filipino-Inventors-Society-104310895194858"
+                target="_blank"
+                rel="noopener"
+                >Facebook Page</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-cta-col">
+          <button class="btn btn-gold" id="contactOpenBtn">Contact Us</button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          Copyright 2018 - 2026 Engr. Antonio E. Jimeno, Jr., ECE,
+          <a
+            href="https://cybercrimeconsultant.com"
+            target="_blank"
+            rel="noopener"
+            >President and CEO</a
+          >, International Cybercrime Consulting Corporation. All Rights
+          Reserved!
+        </p>
+      </div>
+    </footer>
+
+    <!-- ===================== CONTACT MODAL ===================== -->
+    <div class="contact-modal" id="contactModal">
+      <div class="contact-modal-backdrop" id="contactModalBackdrop"></div>
+      <div class="contact-modal-panel">
+        <button
+          class="contact-modal-close"
+          id="contactModalClose"
+          aria-label="Close contact form"
+        >
+          ×
+        </button>
+        <h3 class="contact-modal-title">Contact Form</h3>
+        <form class="contact-form" id="contactForm">
+          <label class="contact-field">
+            <span>Name*</span>
+            <input type="text" name="name" required />
+          </label>
+          <label class="contact-field">
+            <span>Email*</span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="contact-field">
+            <span>Phone</span>
+            <input type="tel" name="phone" />
+          </label>
+          <label class="contact-field">
+            <span>Message</span>
+            <textarea name="message" rows="5"></textarea>
+          </label>
+          <button type="submit" class="btn btn-gold contact-submit">
+            Contact Us
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
