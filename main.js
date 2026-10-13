@@ -131,42 +131,201 @@ function initLeadership() {
   currentLabel.textContent = pad(1);
 }
 
-/* ---------- Gallery carousel + lightbox ---------- */
+/* ---------- Gallery: scrolls on desktop, infinite swipe loop on phones ---------- */
 function initGallery() {
+  const gallery = document.querySelector(".gallery");
+  const viewport = document.querySelector(".gallery-viewport");
   const track = document.getElementById("galleryTrack");
   const prevBtn = document.getElementById("galleryPrev");
   const nextBtn = document.getElementById("galleryNext");
-  if (!track || !prevBtn || !nextBtn) return;
+  if (!gallery || !viewport || !track || !prevBtn || !nextBtn) return;
 
-  const items = Array.from(track.querySelectorAll(".gallery-item"));
-  if (!items.length) return;
+  const first = track.querySelector(".gallery-item");
+  if (!first) return;
 
-  const GAP = 16;
-  let index = 0;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
-  const perView = () => {
-    if (window.innerWidth <= 560) return 1;
-    if (window.innerWidth <= 900) return 2;
-    return 3;
+  // One step = one photo plus the gap between photos
+  const step = () => {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+    return first.offsetWidth + gap;
   };
-  const maxIndex = () => Math.max(0, items.length - perView());
 
-  function update() {
-    index = Math.min(index, maxIndex());
-    const itemWidth = items[0].getBoundingClientRect().width;
-    track.style.transform = `translateX(-${index * (itemWidth + GAP)}px)`;
+  const scrollStep = (direction) =>
+    viewport.scrollBy({
+      left: direction * step(),
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+
+  // Grey out the arrows at the start and end
+  const updateArrows = () => {
+    const max = viewport.scrollWidth - viewport.clientWidth;
+    prevBtn.disabled = viewport.scrollLeft <= 1;
+    nextBtn.disabled = viewport.scrollLeft >= max - 1;
+  };
+
+  prevBtn.addEventListener("click", () => scrollStep(-1));
+  nextBtn.addEventListener("click", () => scrollStep(1));
+  viewport.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  updateArrows();
+
+  initGalleryLoop(gallery, viewport, track);
+}
+
+/* Phone mode: photos sit around the center one, wrap around forever,
+   and can be dragged left or right. */
+function initGalleryLoop(gallery, viewport, track) {
+  const items = Array.from(track.querySelectorAll(".gallery-item"));
+  const n = items.length;
+  if (n < 5) return; // too few photos to loop nicely
+
+  const mq = window.matchMedia("(max-width: 560px)");
+  const half = Math.floor(n / 2);
+
+  let current = 0;
+  let enabled = false;
+
+  // Where each photo sits relative to the center: ..., -1, 0, 1, ...
+  const offsetOf = (i) => ((((i - current + half) % n) + n) % n) - half;
+
+  function render(skipAnimation = false) {
+    items.forEach((item, i) => {
+      const off = offsetOf(i);
+      const prev = Number(item.dataset.offset);
+      const jumped = !Number.isNaN(prev) && Math.abs(off - prev) > 1;
+
+      // A photo wrapping from one end to the other should not fly across the screen
+      if (skipAnimation || jumped) {
+        item.classList.add("no-anim");
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => item.classList.remove("no-anim")),
+        );
+      }
+
+      item.dataset.offset = off;
+      item.style.setProperty("--offset", off);
+      item.classList.toggle("is-active", off === 0);
+      item.classList.toggle("is-far", Math.abs(off) >= 3);
+      item.tabIndex = off === 0 ? 0 : -1;
+    });
   }
 
-  nextBtn.addEventListener("click", () => {
-    index = Math.min(index + 1, maxIndex());
-    update();
+  function move(delta) {
+    current = (((current + delta) % n) + n) % n;
+    track.style.setProperty("--drag", "0px");
+    render();
+  }
+
+  /* ----- Dragging ----- */
+  let startX = 0;
+  let startTime = 0;
+  let dx = 0;
+  let moved = false;
+  let suppressClickUntil = 0;
+
+  function onDown(e) {
+    if (!enabled || !e.isPrimary) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX = e.clientX;
+    startTime = performance.now();
+    dx = 0;
+    moved = false;
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onCancel);
+  }
+
+  function onMove(e) {
+    const limit = viewport.clientWidth * 0.8;
+    dx = Math.max(-limit, Math.min(limit, e.clientX - startX));
+    if (!moved && Math.abs(dx) > 6) {
+      moved = true;
+      track.classList.add("is-dragging");
+    }
+    if (moved) track.style.setProperty("--drag", `${dx}px`);
+  }
+
+  function finish(commit) {
+    window.removeEventListener("pointermove", onMove);
+    window.removeEventListener("pointerup", onUp);
+    window.removeEventListener("pointercancel", onCancel);
+    track.classList.remove("is-dragging");
+
+    if (moved) suppressClickUntil = performance.now() + 350;
+
+    const elapsed = Math.max(1, performance.now() - startTime);
+    const fast = Math.abs(dx) / elapsed > 0.35;
+    const far = Math.abs(dx) > 50 || (Math.abs(dx) > 20 && fast);
+
+    if (commit && moved && far) {
+      move(dx < 0 ? 1 : -1); // swipe left shows the next photo
+    } else {
+      track.style.setProperty("--drag", "0px"); // snap back
+    }
+  }
+  const onUp = () => finish(true);
+  const onCancel = () => finish(false);
+
+  viewport.addEventListener("pointerdown", onDown);
+
+  // Tapping: a side photo moves to the center, the center photo opens the lightbox.
+  // A tap that ends a drag does neither.
+  viewport.addEventListener(
+    "click",
+    (e) => {
+      if (!enabled) return;
+
+      if (performance.now() < suppressClickUntil) {
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+
+      const item = e.target.closest(".gallery-item");
+      if (item && !item.classList.contains("is-active")) {
+        e.stopPropagation();
+        e.preventDefault();
+        current = items.indexOf(item);
+        render();
+      }
+    },
+    true,
+  );
+
+  gallery.addEventListener("keydown", (e) => {
+    if (!enabled) return;
+    if (e.key === "ArrowLeft") move(-1);
+    if (e.key === "ArrowRight") move(1);
   });
-  prevBtn.addEventListener("click", () => {
-    index = Math.max(index - 1, 0);
-    update();
-  });
-  window.addEventListener("resize", update);
-  update();
+
+  /* ----- Switch on for phones, off for larger screens ----- */
+  function enable() {
+    if (enabled) return;
+    enabled = true;
+    gallery.classList.add("is-loop");
+    viewport.scrollLeft = 0;
+    render(true);
+  }
+
+  function disable() {
+    if (!enabled) return;
+    enabled = false;
+    gallery.classList.remove("is-loop");
+    track.style.removeProperty("--drag");
+    items.forEach((item) => {
+      item.classList.remove("is-active", "is-far", "no-anim");
+      item.style.removeProperty("--offset");
+      item.removeAttribute("data-offset");
+      item.removeAttribute("tabindex");
+    });
+  }
+
+  const sync = () => (mq.matches ? enable() : disable());
+  sync();
+  mq.addEventListener("change", sync);
 }
 
 /* ---------- Lightbox: any element with data-full opens its image ---------- */
