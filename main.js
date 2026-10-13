@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroSlider(reduceMotion);
   initLeadership();
   initGallery();
+  initLightbox();
+  initEvents();
   initContactModal();
   initScrollReveal(reduceMotion);
   initScrollspy();
@@ -165,32 +167,83 @@ function initGallery() {
   });
   window.addEventListener("resize", update);
   update();
+}
 
-  /* Lightbox */
+/* ---------- Lightbox: any element with data-full opens its image ---------- */
+function initLightbox() {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   const lightboxClose = document.getElementById("lightboxClose");
   if (!lightbox || !lightboxImg || !lightboxClose) return;
 
-  const closeLightbox = () => {
+  const close = () => {
     lightbox.classList.remove("is-open");
     lightboxImg.src = "";
   };
 
-  items.forEach((item) => {
-    item.addEventListener("click", () => {
-      lightboxImg.src = item.dataset.full;
-      lightboxImg.alt = item.querySelector("img").alt;
+  document.querySelectorAll("[data-full]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const thumb = el.querySelector("img");
+      lightboxImg.src = el.dataset.full;
+      lightboxImg.alt = thumb ? thumb.alt : "";
       lightbox.classList.add("is-open");
     });
   });
 
-  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxClose.addEventListener("click", close);
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox) close();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
+    if (e.key === "Escape") close();
+  });
+}
+
+/* ---------- Events: status badges, session progress, placeholder buttons ---------- */
+function initEvents() {
+  const parseDate = (str) => {
+    const [y, m, d] = str.split("-").map(Number);
+    return new Date(y, m - 1, d);
+  };
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  // Badge on each event: Upcoming / Today / Happening now / Ended
+  document.querySelectorAll(".ev-row[data-start]").forEach((row) => {
+    const badge = row.querySelector("[data-status]");
+    if (!badge) return;
+
+    const start = parseDate(row.dataset.start);
+    const end = parseDate(row.dataset.end || row.dataset.start);
+    const sameDay = start.getTime() === end.getTime();
+
+    badge.classList.remove("is-live", "is-ended");
+    if (today < start) {
+      badge.textContent = "Upcoming";
+    } else if (today <= end) {
+      badge.textContent = sameDay ? "Today" : "Happening now";
+      badge.classList.add("is-live");
+    } else {
+      badge.textContent = "Ended";
+      badge.classList.add("is-ended");
+    }
+  });
+
+  // Training sessions: dim finished ones, mark the next one
+  let nextMarked = false;
+  document.querySelectorAll(".ev-sessions li[data-date]").forEach((li) => {
+    const date = parseDate(li.dataset.date);
+    if (date < today) {
+      li.classList.add("is-past");
+    } else if (!nextMarked) {
+      li.classList.add("is-next");
+      nextMarked = true;
+    }
+  });
+
+  // Buttons without a real link yet do nothing
+  document.querySelectorAll("[data-placeholder]").forEach((link) => {
+    link.addEventListener("click", (e) => e.preventDefault());
   });
 }
 

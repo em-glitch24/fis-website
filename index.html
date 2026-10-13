@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/events.css" />
     <link rel="icon" type="image/png" href="./assets/fislogo1.png" />
     <link rel="apple-touch-icon" href="./assets/fislogo1.png" />
   </head>
@@ -73,15 +74,18 @@
       >
         <div class="hero-track" id="heroTrack">
           <div class="hero-slide is-active" data-slide="0">
-            <img src="./assets/img1.jpg" alt="" />
+            <img src="./assets/gallery9.jpg" alt="" />
           </div>
           <div class="hero-slide" data-slide="1">
-            <img src="./assets/img2.jpg" alt="" />
+            <img src="./assets/img1.jpg" alt="" />
           </div>
           <div class="hero-slide" data-slide="2">
-            <img src="./assets/img3.jpg" alt="" />
+            <img src="./assets/img2.jpg" alt="" />
           </div>
           <div class="hero-slide" data-slide="3">
+            <img src="./assets/img3.jpg" alt="" />
+          </div>
+          <div class="hero-slide" data-slide="4">
             <img src="./assets/img4.jpg" alt="" />
           </div>
           <div class="hero-slide" data-slide="4">
@@ -124,17 +128,19 @@
         <div class="hero-info-card">
           <div class="hero-info-media">
             <img
-              src="./assets/fislogo1.png"
-              alt="Filipino Inventors Society logo"
+              src="./assets/anniversarry.jpg"
+              alt="Poster: FIS 83rd Founding Anniversary"
             />
           </div>
           <div class="hero-info-content">
-            <h4 class="hero-info-title">Contact Info</h4>
+            <h4 class="hero-info-title">FIS@83: 83rd Founding Anniversary</h4>
             <p class="hero-info-row">
-              <span>Location:</span> TAPI Building, DOST Compound, Taguig
+              <span>Date:</span> Tuesday, October 13, 2026, 6:00 PM onwards
             </p>
-            <p class="hero-info-row"><span>Email:</span> info@fis.com.ph</p>
-            <p class="hero-info-row"><span>Phone:</span> +632 8 542-2343</p>
+            <p class="hero-info-row">
+              <span>Venue:</span> VS Hotel, Quezon City
+            </p>
+            <a href="#events" class="btn btn-gold">View details</a>
           </div>
         </div>
       </section>
@@ -335,11 +341,11 @@
                 <button
                   class="gallery-item reveal scale-in"
                   type="button"
-                  data-full="./assets/gallery1.jpg"
+                  data-full="./assets/gallery9.jpg"
                   style="--reveal-delay: 0s"
                 >
                   <img
-                    src="./assets/gallery1.jpg"
+                    src="./assets/gallery9.jpg"
                     alt="FIS members at a National Inventors Week ceremony"
                   />
                 </button>
@@ -417,6 +423,17 @@
                 >
                   <img
                     src="./assets/gallery8.jpg"
+                    alt="FIS members group photo"
+                  />
+                </button>
+                <button
+                  class="gallery-item reveal scale-in"
+                  type="button"
+                  data-full="./assets/gallery1.jpg"
+                  style="--reveal-delay: 0.42s"
+                >
+                  <img
+                    src="./assets/gallery1.jpg"
                     alt="FIS members group photo"
                   />
                 </button>
@@ -534,155 +551,236 @@
       </section>
 
       <!-- ===================== EVENTS ===================== -->
-      <section class="events" id="events">
+      <!-- TODO: every button below with href="#" is a placeholder.
+           Replace "#" with the real link when you have it. -->
+      <section class="events-section" id="events">
         <div class="container">
-          <div class="events-heading">
-            <p class="eyebrow events-eyebrow">
-              <span class="eyebrow-bar"></span>
-              Announcements &amp; Events
-            </p>
-            <h2 class="events-title">What's happening at FIS.</h2>
-          </div>
-        </div>
+          <header class="ev-head">
+            <p class="ev-kicker">Announcements &amp; Events</p>
+            <h2 class="ev-title">What's happening at FIS.</h2>
+          </header>
 
-        <!-- FEATURED EVENT BANNER -->
-        <div class="event-banner">
-          <div class="event-banner-media">
-            <span class="event-banner-badge">Featured Event</span>
-            <div class="event-banner-frame">
-              <img
-                src="./assets/niw2021.png"
-                alt="NIW 2021: OPHIR event poster"
-              />
-            </div>
-
-            <div class="event-stat-row">
-              <div class="event-stat">
-                <span class="event-stat-value">5</span>
-                <span class="event-stat-label">Days</span>
-              </div>
-              <div class="event-stat">
-                <span class="event-stat-value">13</span>
-                <span class="event-stat-label">Categories</span>
-              </div>
-              <div class="event-stat event-stat-wide">
-                <span class="event-stat-value">Nov 15&ndash;19</span>
-                <span class="event-stat-label">2021</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="event-banner-content reveal from-bottom"
-            style="--reveal-delay: 0.15s"
+          <!-- ========== 1. 83rd Founding Anniversary ========== -->
+          <article
+            class="ev-row reveal from-bottom"
+            data-start="2026-10-13"
+            data-end="2026-10-13"
           >
-            <div class="event-banner-inner">
-              <h3 class="event-banner-title">NIW 2021: OPHIR</h3>
-              <p class="event-tag">By FIS &middot; Posted October 1, 2021</p>
-
-              <p class="event-banner-desc">
-                A 5-day virtual event which would include webinars and invention
-                contests in thirteen (13) categories: Outstanding Invention
-                (Gawad Teo Purugganan), Outstanding Utility Model (Gawad
-                Pastor-Reyes-Torres), Outstanding Industrial Design (Gawad
-                Dalmacio Buenaventura), Pending Patent (Gawad Manuel G. Goyena),
-                Student Creative Research (Gawad Gregorio Y. Zara), Book Salon
-                Competition (Gawad Sergio Bayan), Visual Arts Competition (Gawad
-                Diosdado Banatao), Innovation Song Writing Composition (Gawad
-                Roberto Del Rosario), Inventalino Contest (Gawad Jose P. Rizal),
-                Outstanding Natural Medicine (Gawad Patrocinio Valenzuela),
-                Outstanding Indigenous Products (Gawad Panday Pira), Outstanding
-                Business Incubation (Gawad Dr. Juan Salcedo Jr), Outstanding
-                Innovation Vlogger (Gawad Manuel P. Manahan), among others. Due
-                date for registration is on October 30, 2021.
-              </p>
-              <a
-                href="https://sites.google.com/view/niw2021/"
-                target="_blank"
-                rel="noopener"
-                class="btn btn-gold"
+            <figure class="ev-visual">
+              <button
+                class="ev-poster"
+                type="button"
+                data-full="./assets/anniversary-83.jpg"
+                aria-label="Enlarge the 83rd Founding Anniversary poster"
               >
-                Learn More
-              </a>
-            </div>
-          </div>
-        </div>
+                <img
+                  src="./assets/anniversarry.jpg"
+                  alt="Poster: FIS 83rd Founding Anniversary, October 13, 2026, VS Hotel, Quezon City"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption class="ev-caption">
+                Tap the poster to enlarge
+              </figcaption>
+            </figure>
 
-        <div class="container events-footer-block">
-          <div class="event-registration">
-            <!-- LEFT: REGISTRATION DETAILS -->
-            <div class="event-details reveal from-left">
-              <div class="event-detail-row">
-                <span class="event-detail-label">Title</span>
-                <span class="event-detail-value"
-                  >(OPHIR) Outstanding Philippine Innovation Revolution</span
-                >
-              </div>
-              <div class="event-detail-row">
-                <span class="event-detail-label">Theme</span>
-                <span class="event-detail-value"
-                  >"Pitching Innovative Products to the Marketplace through
-                  Synergized Partnership"</span
-                >
-              </div>
-              <div class="event-detail-row">
-                <span class="event-detail-label">Dates</span>
-                <span class="event-detail-value">November 15–19, 2021</span>
-              </div>
-              <div class="event-detail-row">
-                <span class="event-detail-label">Eligibility</span>
-                <span class="event-detail-value"
-                  >Open to all Filipino inventors, designers, makers, students,
-                  teachers, and researchers currently living in the
-                  Philippines.</span
-                >
-              </div>
-            </div>
-
-            <!-- RIGHT: TITLE + PRIVACY NOTE + BUTTONS -->
-            <div
-              class="event-registration-content reveal from-right"
-              style="--reveal-delay: 0.15s"
-            >
-              <h3 class="event-registration-title">
-                Contestant Registration to the National Inventors Week (NIW)
-                2021
-              </h3>
-
-              <p class="event-privacy-note">
-                The organizers of NIW respect your right to privacy and are
-                committed to protecting the confidentiality of your personal
-                information. By filling out a registration form, you consent to
-                the collection, processing, and use of the information for
-                purposes of monitoring contest entries and communication on
-                matters relating to NIW activities.
+            <div class="ev-body">
+              <p class="ev-status" data-status>Event</p>
+              <h3 class="ev-name">FIS@83: 83rd Founding Anniversary</h3>
+              <p class="ev-tagline">
+                Filipino innovation for a better Philippines. Join us as we
+                celebrate 83 years of Filipino ingenuity, innovation, and
+                service to the nation.
               </p>
 
-              <div class="event-deadline-notice">
-                <span class="event-deadline-label">Deadline</span>
-                <span class="event-deadline-value"
-                  >All entries due October 31, 2021</span
-                >
-              </div>
+              <dl class="ev-facts">
+                <dt>When</dt>
+                <dd>Tuesday, October 13, 2026, 6:00 PM onwards</dd>
+                <dt>Where</dt>
+                <dd>
+                  10th Floor, VS Hotel, Victoria Sport Tower, 799 EDSA, South
+                  Triangle, Quezon City
+                </dd>
+              </dl>
 
-              <div class="event-cta-row">
-                <a
-                  href="https://bit.ly/NIW2021contestant"
-                  target="_blank"
-                  rel="noopener"
-                  class="btn btn-gold"
-                  >Contestant Registration</a
+              <ul class="ev-chips" aria-label="Focus areas">
+                <li>Invention</li>
+                <li>Innovation</li>
+                <li>Entrepreneurship</li>
+                <li>Sustainable technology</li>
+              </ul>
+
+              <div class="ev-actions">
+                <a href="#" class="btn btn-gold" data-placeholder>RSVP</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========== 2. L.A.V.IP. Training ========== -->
+          <article
+            class="ev-row ev-row--flip reveal from-bottom"
+            data-start="2026-09-14"
+            data-end="2026-11-06"
+          >
+            <div class="ev-visual">
+              <div class="ev-panel">
+                <p class="ev-panel-mark">L.A.V.IP.</p>
+                <p class="ev-panel-label">Six sessions, 9:00 AM to 5:00 PM</p>
+                <ol class="ev-sessions">
+                  <li data-date="2026-09-14">
+                    <time datetime="2026-09-14">Sep 14</time>
+                    <span class="ev-session-topic">IP Management</span>
+                  </li>
+                  <li data-date="2026-09-28">
+                    <time datetime="2026-09-28">Sep 28</time>
+                    <span class="ev-session-topic">IP Audit</span>
+                  </li>
+                  <li data-date="2026-10-05">
+                    <time datetime="2026-10-05">Oct 5</time>
+                    <span class="ev-session-topic">IP Valuation</span>
+                  </li>
+                  <li data-date="2026-10-12">
+                    <time datetime="2026-10-12">Oct 12</time>
+                    <span class="ev-session-topic"
+                      >IP Licensing and Franchising</span
+                    >
+                  </li>
+                  <li data-date="2026-10-27">
+                    <time datetime="2026-10-27">Oct 27</time>
+                    <span class="ev-session-topic">Revalida</span>
+                  </li>
+                  <li data-date="2026-11-06">
+                    <time datetime="2026-11-06">Nov 6</time>
+                    <span class="ev-session-topic">Graduation</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="ev-body">
+              <p class="ev-status" data-status>Event</p>
+              <h3 class="ev-name">L.A.V.IP. Training Program</h3>
+              <p class="ev-tagline">
+                Licensing, Audit, Valuation, and Management of Intellectual
+                Property: a training program for inventors.
+              </p>
+
+              <dl class="ev-facts">
+                <dt>When</dt>
+                <dd>September 14 to November 6, 2026</dd>
+                <dt>Time</dt>
+                <dd>9:00 AM to 5:00 PM on each session date</dd>
+                <dt>Where</dt>
+                <dd>IPOPHL, McKinley Hill, Taguig City</dd>
+                <dt>Fee</dt>
+                <dd>
+                  Php 5,000.00 per participant, for food and refreshments of
+                  trainers and participating members
+                </dd>
+              </dl>
+
+              <div class="ev-actions">
+                <a href="#" class="btn btn-gold" data-placeholder
+                  >Pre-register</a
                 >
-                <a
-                  href="https://bit.ly/NIW2021attendee"
-                  target="_blank"
-                  rel="noopener"
-                  class="btn btn-ghost-dark"
-                  >Observer / Visitor Registration</a
+                <a href="#site-footer" class="btn btn-ghost-dark">Learn More</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========== 3. National Inventors Week ========== -->
+          <article
+            class="ev-row reveal from-bottom"
+            data-start="2026-11-17"
+            data-end="2026-11-19"
+          >
+            <figure class="ev-visual">
+              <button
+                class="ev-poster"
+                type="button"
+                data-full="./assets/niw-2026.jpg"
+                aria-label="Enlarge the National Inventors Week poster"
+              >
+                <img
+                  src="./assets/event.jpg"
+                  alt="Poster: National Inventors Week, November 17 to 19, 2026"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption class="ev-caption">
+                Tap the poster to enlarge
+              </figcaption>
+            </figure>
+
+            <div class="ev-body">
+              <p class="ev-status" data-status>Event</p>
+              <h3 class="ev-name">National Inventors Week 2026</h3>
+              <p class="ev-tagline">
+                The Philippines' annual opportunity to recognize Filipino
+                inventors, showcase their inventions, encourage young people to
+                innovate, and promote the practical use and development of
+                Filipino-made ideas and technologies.
+              </p>
+
+              <dl class="ev-facts">
+                <dt>When</dt>
+                <dd>November 17 to 19, 2026</dd>
+                <!-- TODO: add a "Where" row once the venue is confirmed -->
+              </dl>
+
+              <div class="ev-actions">
+                <a href="#" class="btn btn-gold" data-placeholder>Register</a>
+                <a href="#" class="btn btn-ghost-dark" data-placeholder
+                  >Learn more</a
                 >
               </div>
             </div>
-          </div>
+          </article>
+
+          <!-- NIW history -->
+          <section
+            class="ev-history reveal from-bottom"
+            aria-labelledby="evHistoryTitle"
+          >
+            <h3 class="ev-history-title" id="evHistoryTitle">
+              How National Inventors Week got its dates
+            </h3>
+            <p class="ev-history-intro">
+              The celebration goes back to 1967. Its dates moved several times
+              before settling in November.
+            </p>
+            <ol class="ev-timeline">
+              <li>
+                <span class="ev-year">1967</span>
+                <p>
+                  Proclamation No. 187 declared the week containing April 13
+                  (the date Republic Act No. 3850 was signed in 1964) as
+                  Inventors Week.
+                </p>
+              </li>
+              <li>
+                <span class="ev-year">1983</span>
+                <p>
+                  Proclamation No. 2270 moved it to the last week of February,
+                  partly because April could coincide with Holy Week.
+                </p>
+              </li>
+              <li>
+                <span class="ev-year">1989</span>
+                <p>
+                  Proclamation No. 355 revived the celebration in the last full
+                  week of February and promoted Filipino invention festivals.
+                </p>
+              </li>
+              <li>
+                <span class="ev-year">1993</span>
+                <p>
+                  Proclamation No. 285 moved it to the third week of November,
+                  giving us today's National Inventors Week.
+                </p>
+              </li>
+            </ol>
+          </section>
         </div>
       </section>
 
@@ -710,7 +808,7 @@
             class="footer-logo"
           />
         </div>
-
+        <!--
         <div class="footer-col">
           <h4 class="footer-heading">Address</h4>
           <div class="footer-info-row">
@@ -734,6 +832,7 @@
             </p>
           </div>
         </div>
+        -->
 
         <div class="footer-col">
           <h4 class="footer-heading">Contacts</h4>
