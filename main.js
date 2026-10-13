@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initMobileNav();
   initHeroSlider(reduceMotion);
+  initLeadersStart();
   initLeadership();
   initGallery();
   initLightbox();
@@ -130,6 +131,32 @@ function initLeadership() {
   media[0].classList.add("is-active");
   profiles[0].classList.add("is-active");
   currentLabel.textContent = pad(1);
+}
+
+/* ---------- Leaders: on mobile, open on the middle leader so both sides have a preview ---------- */
+function initLeadersStart() {
+  const line = document.querySelector(".leader-line");
+  if (!line) return;
+
+  const leaders = Array.from(line.querySelectorAll(".leader"));
+  if (leaders.length < 3) return;
+
+  const mq = window.matchMedia("(max-width: 900px)");
+  // Start on the National President (the one with the red dot)
+  const middle =
+    line.querySelector(".leader-dot.is-current")?.closest(".leader") ||
+    leaders[Math.floor(leaders.length / 2)];
+  function centerMiddle() {
+    if (!mq.matches) return;
+    const lineBox = line.getBoundingClientRect();
+    const box = middle.getBoundingClientRect();
+    const offset = box.left - lineBox.left + line.scrollLeft;
+    line.scrollLeft = offset - (line.clientWidth - middle.offsetWidth) / 2;
+  }
+
+  centerMiddle();
+  window.addEventListener("load", centerMiddle);
+  mq.addEventListener("change", centerMiddle);
 }
 
 /* ---------- Gallery: scrolls on desktop, infinite swipe loop on phones ---------- */

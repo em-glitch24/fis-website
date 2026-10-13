@@ -146,15 +146,9 @@
       </section>
 
       <!-- ===================== LEADERSHIP ===================== -->
-      <section
-        class="leadership"
-        id="leadership"
-        aria-roledescription="carousel"
-        aria-label="FIS Leadership"
-        tabindex="0"
-      >
+      <section class="leadership" id="leadership" aria-label="FIS Leadership">
         <div class="container">
-          <div class="leadership-heading">
+          <div class="leadership-heading reveal from-bottom">
             <p class="eyebrow leadership-eyebrow">
               <span class="eyebrow-bar"></span>
               Leadership &amp; Legacy
@@ -162,22 +156,38 @@
             <h2 class="leadership-title">Our Leaders</h2>
           </div>
 
-          <div class="leadership-carousel">
-            <!-- MEDIA -->
-            <div class="leadership-media reveal from-left">
-              <!-- Leader 1 -->
-              <div class="leadership-media-item is-active" data-person="1">
+          <div class="leader-line">
+            <!-- Leader 1 -->
+            <article
+              class="leader reveal from-bottom"
+              style="--reveal-delay: 0s"
+            >
+              <div class="leader-media">
                 <img
                   src="./assets/national-pres.jpg"
                   alt="Ronald P. Pagsanghan"
                 />
               </div>
+              <div class="leader-marker">
+                <span class="leader-dot is-current"></span>
+              </div>
+              <p class="leader-role">National President</p>
+              <h3 class="leader-name">Ronald P. Pagsanghan</h3>
+              <p class="leader-contribution">
+                Inventor of Unsinkable Porta Boat
+              </p>
+              <p class="leader-desc">
+                A Filipino inventor and FIS leader whose work contributes to the
+                development and promotion of Filipino innovation.
+              </p>
+            </article>
 
-              <!-- Leader 2 -->
-              <div
-                class="leadership-media-item leadership-video"
-                data-person="2"
-              >
+            <!-- Leader 2 -->
+            <article
+              class="leader reveal from-bottom"
+              style="--reveal-delay: 0.12s"
+            >
+              <div class="leader-media">
                 <iframe
                   src="https://www.youtube.com/embed/7unODmt1-wI?rel=0"
                   title="Dir. Edgar Garcia"
@@ -192,23 +202,27 @@
                   "
                   allowfullscreen
                   loading="lazy"
-                  style="border: 0"
                 ></iframe>
-                <a
-                  class="video-fallback"
-                  href="https://www.youtube.com/watch?v=7unODmt1-wI"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Watch on YouTube ↗
-                </a>
               </div>
+              <div class="leader-marker"><span class="leader-dot"></span></div>
+              <p class="leader-role">TAPI-DOST Director</p>
+              <h3 class="leader-name">Dir. Edgar Garcia</h3>
+              <p class="leader-contribution">
+                Technology Application and Promotion Institute
+              </p>
+              <p class="leader-desc">
+                A key figure in the Philippine innovation ecosystem, supporting
+                the promotion and application of local technologies and
+                inventions.
+              </p>
+            </article>
 
-              <!-- Leader 3 -->
-              <div
-                class="leadership-media-item leadership-video"
-                data-person="3"
-              >
+            <!-- Leader 3 -->
+            <article
+              class="leader reveal from-bottom"
+              style="--reveal-delay: 0.24s"
+            >
+              <div class="leader-media">
                 <iframe
                   src="https://www.youtube.com/embed/nIx-jIrEJa0?rel=0"
                   title="Dr. Benjamin Santos"
@@ -223,92 +237,20 @@
                   "
                   allowfullscreen
                   loading="lazy"
-                  style="border: 0"
                 ></iframe>
-                <a
-                  class="video-fallback"
-                  href="https://www.youtube.com/watch?v=nIx-jIrEJa0"
-                  target="_blank"
-                  rel="noopener"
+
                 >
-                  Watch on YouTube ↗
-                </a>
               </div>
-            </div>
-
-            <!-- PROFILE INFORMATION -->
-            <div
-              class="leadership-info reveal from-right"
-              style="--reveal-delay: 0.15s"
-            >
-              <!-- Leader 1 -->
-              <article class="leadership-profile is-active" data-person="1">
-                <p class="leadership-role">National President</p>
-                <h3>Ronald P. Pagsanghan</h3>
-                <p class="leadership-contribution">
-                  Inventor of Unsinkable Porta Boat
-                </p>
-                <p class="leadership-description">
-                  A Filipino inventor and FIS leader whose work contributes to
-                  the development and promotion of Filipino innovation.
-                </p>
-              </article>
-
-              <!-- Leader 2 -->
-              <article class="leadership-profile" data-person="2">
-                <p class="leadership-role">TAPI-DOST Director</p>
-                <h3>Dir. Edgar Garcia</h3>
-                <p class="leadership-contribution">
-                  Technology Application and Promotion Institute
-                </p>
-                <p class="leadership-description">
-                  A key figure in the Philippine innovation ecosystem,
-                  supporting the promotion and application of local technologies
-                  and inventions.
-                </p>
-              </article>
-
-              <!-- Leader 3 -->
-              <article class="leadership-profile" data-person="3">
-                <p class="leadership-role">Former National President</p>
-                <h3>Dr. Benjamin Santos, PhD</h3>
-                <p class="leadership-contribution">
-                  Filipino Inventors Society
-                </p>
-                <p class="leadership-description">
-                  Former National President of the Filipino Inventors Society
-                  and contributor to the organization's continuing legacy of
-                  Filipino invention and innovation.
-                </p>
-              </article>
-
-              <!-- NAVIGATION -->
-              <div class="leadership-navigation">
-                <button
-                  class="leadership-arrow"
-                  id="leadershipPrev"
-                  type="button"
-                  aria-label="Previous leader"
-                >
-                  ←
-                </button>
-
-                <div class="leadership-counter">
-                  <span id="leadershipCurrent">01</span>
-                  <span class="leadership-counter-line"></span>
-                  <span id="leadershipTotal">03</span>
-                </div>
-
-                <button
-                  class="leadership-arrow"
-                  id="leadershipNext"
-                  type="button"
-                  aria-label="Next leader"
-                >
-                  →
-                </button>
-              </div>
-            </div>
+              <div class="leader-marker"><span class="leader-dot"></span></div>
+              <p class="leader-role">Former National President</p>
+              <h3 class="leader-name">Dr. Benjamin Santos, PhD</h3>
+              <p class="leader-contribution">Filipino Inventors Society</p>
+              <p class="leader-desc">
+                Former National President of the Filipino Inventors Society and
+                contributor to the organization's continuing legacy of Filipino
+                invention and innovation.
+              </p>
+            </article>
           </div>
         </div>
       </section>

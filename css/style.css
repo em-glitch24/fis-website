@@ -495,331 +495,236 @@ button {
     transform: none;
   }
 }
-
 /* ============================================================
-   LEADERSHIP — interactive profile carousel
+   LEADERSHIP — legacy line (dark navy)
    ============================================================ */
 
 .leadership {
-  position: relative;
-  padding: 72px 0 90px;
+  --leader-ratio: 1 / 1; /* photo shape: 1 / 1 square, 4 / 3 wider, 4 / 5 taller */
+  padding: 80px 0 96px;
   background:
     linear-gradient(rgba(7, 21, 39, 0.78), rgba(7, 21, 39, 0.78)),
     url("../assets/leaderbgg.jpg") center center / cover no-repeat;
-  overflow: hidden;
   color: var(--white);
 }
 
 .leadership-heading {
-  margin-bottom: 36px;
+  text-align: center;
+  margin-bottom: 48px;
 }
-
 .leadership-eyebrow {
+  justify-content: center;
   color: var(--red);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-
 .leadership-title {
   color: var(--white);
-  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   font-weight: 600;
   letter-spacing: -0.025em;
-  max-width: 760px;
 }
 
-/* ---------- Main layout ---------- */
-
-.leadership-carousel {
+.leader-line {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.85fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
-  align-items: stretch;
 }
 
-/* ---------- Media ---------- */
+.leader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-.leadership-media {
+/* ---------- Big photo / video ---------- */
+.leader-media {
   position: relative;
-  height: 500px;
-  background: var(--navy-deep);
+  width: 100%;
+  aspect-ratio: var(--leader-ratio);
+  border-radius: 10px;
   overflow: hidden;
+  background: var(--navy-deep);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
 }
-
-.leadership-media-item {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.45s ease,
-    visibility 0.45s ease;
-}
-
-.leadership-media-item.is-active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
-}
-
-.leadership-media-item img,
-.leadership-media-item iframe {
+.leader-media img,
+.leader-media iframe {
   width: 100%;
   height: 100%;
   display: block;
-  border: 1px transparent;
-  border-radius: 8px;
+  border: 0;
 }
-
-.leadership-media-item img {
+.leader-media img {
   object-fit: cover;
+  object-position: center top; /* keeps faces in frame */
 }
 
-/* Subtle dark treatment over photos */
-
-.leadership-media-item::after {
+/* ---------- Line + dot ---------- */
+.leader-marker {
+  position: relative;
+  width: calc(
+    100% + 32px
+  ); /* reaches across the gap so the line is continuous */
+  height: 14px;
+  margin: 28px 0 20px;
+}
+.leader-marker::before {
   content: "";
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to top,
-    rgba(7, 21, 39, 0.5),
-    rgba(7, 21, 39, 0) 55%
-  );
-}
-
-.leadership-video::after {
-  display: none;
-}
-
-/* ---------- Information ---------- */
-
-.leadership-info {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 42px 12px 42px 20px;
-  background: transparent;
-  color: var(--navy);
-}
-
-.leadership-profile {
-  display: none;
-}
-
-.leadership-profile.is-active {
-  display: block;
-  animation: leadershipFadeIn 0.45s ease;
-}
-
-@keyframes leadershipFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.leadership-role {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
-  color: var(--gold);
-  font-size: 0.78rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.13em;
-}
-
-.leadership-role::before {
-  content: "";
-  width: 28px;
+  left: 0;
+  right: 0;
+  top: 6px;
   height: 2px;
-  background: var(--gold);
+  background: rgba(255, 255, 255, 0.25);
 }
-
-.leadership-profile h3 {
-  margin-bottom: 18px;
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.4vw, 3.1rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+.leader:first-child .leader-marker {
+  width: calc(50% + 16px);
+  align-self: flex-end; /* line starts at the first dot */
 }
-
-.leadership-contribution {
-  margin-bottom: 24px;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1rem;
-  font-weight: 600;
+.leader:last-child .leader-marker {
+  width: calc(50% + 16px);
+  align-self: flex-start; /* line stops at the last dot */
 }
-
-.leadership-description {
-  max-width: 46ch;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.95rem;
-  line-height: 1.75;
-}
-
-/* ---------- Navigation ---------- */
-
-.leadership-navigation {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: auto;
-  padding-top: 48px;
-}
-
-.leadership-arrow {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+.leader-dot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: transparent;
-  color: var(--white);
-  font-size: 1rem;
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.leadership-arrow:hover {
-  border-color: var(--gold);
   background: var(--gold);
-  color: var(--navy);
-  transform: translateY(-1px);
+  transform: translateX(-50%);
+}
+.leader:first-child .leader-dot {
+  left: 0;
+}
+.leader:last-child .leader-dot {
+  left: 100%;
+}
+.leader-dot.is-current {
+  background: var(--red);
 }
 
-.leadership-counter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.78rem;
+/* ---------- Text ---------- */
+.leader-role {
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 0.75rem;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 0.12em;
 }
-
-#leadershipCurrent {
-  color: var(--gold);
+.leader-name {
+  margin-bottom: 8px;
+  color: var(--white);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.leader-contribution {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.leader-desc {
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
-.leadership-counter-line {
-  width: 36px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* ---------- Decorative corner ---------- */
-
-.leadership-carousel::before {
-  content: "";
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-top: 2px solid var(--red);
-  border-left: 2px solid var(--red);
-  margin: -16px 0 0 -16px;
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* ============================================================
-   LEADERSHIP — TABLET
-   ============================================================ */
-
+/* ---------- Tablet and phone: swipe one leader at a time ---------- */
 @media (max-width: 900px) {
   .leadership {
-    padding: 64px 0 76px;
+    --leader-card: min(84vw, 400px); /* width of the leader in the center */
+    padding: 64px 0 72px;
   }
 
-  .leadership-heading {
-    margin-bottom: 36px;
+  .leader-line {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* run to the screen edges, and pad so the first and last leader can also sit in the center */
+    margin-inline: -32px;
+    padding-inline: calc(50vw - var(--leader-card) / 2);
+    padding-bottom: 8px;
+
+    /* fade the edges so the neighbors are only faintly visible */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 9%,
+      #000 91%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 9%,
+      #000 91%,
+      transparent 100%
+    );
+  }
+  .leader-line::-webkit-scrollbar {
+    display: none;
   }
 
-  .leadership-carousel {
-    grid-template-columns: 1fr;
-    gap: 0;
+  .leader {
+    flex: 0 0 var(--leader-card);
+    scroll-snap-align: center;
   }
 
-  .leadership-media {
-    height: 420px;
-    min-height: 0;
+  /* mobile order: Former President | National President | TAPI Director */
+  .leader:nth-child(3) {
+    order: 1;
+  }
+  .leader:nth-child(1) {
+    order: 2;
+  }
+  .leader:nth-child(2) {
+    order: 3;
   }
 
-  .leadership-info {
-    min-height: 400px;
-    padding: 42px 32px;
+  /* leaders off-screen to the side must not wait for a vertical scroll reveal */
+  .leader.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* just a dot on top of each text block, no connecting line */
+  .leader-marker,
+  .leader:first-child .leader-marker,
+  .leader:last-child .leader-marker {
+    width: 14px;
+    align-self: center;
+  }
+  .leader-marker::before {
+    display: none;
+  }
+  .leader:first-child .leader-dot,
+  .leader:last-child .leader-dot {
+    left: 50%;
+  }
+
+  /* swiping over a video should swipe the carousel, not tap the player */
+  .leader-media iframe {
+    pointer-events: none;
+  }
+  .video-fallback {
+    pointer-events: auto;
+    z-index: 3;
+    padding: 10px 16px;
   }
 }
-
-/* ============================================================
-   LEADERSHIP — MOBILE
-   ============================================================ */
 
 @media (max-width: 520px) {
-  .leadership {
-    padding: 72px 0;
-  }
-
-  .leadership-heading {
-    margin-bottom: 30px;
-  }
-
-  .leadership-title {
-    font-size: 2.15rem;
-  }
-
-  .leadership-carousel {
-    display: block;
-  }
-
-  .leadership-media {
-    min-height: 360px;
-  }
-
-  .leadership-info {
-    min-height: 430px;
-    padding: 38px 28px 32px;
-  }
-
-  .leadership-profile h3 {
-    font-size: 2rem;
-  }
-
-  .leadership-navigation {
-    padding-top: 36px;
-  }
-}
-
-/* ============================================================
-   LEADERSHIP — REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .leadership-media-item,
-  .leadership-profile.is-active {
-    transition: none;
-    animation: none;
-  }
-
-  .leadership-arrow {
-    transition: none;
+  .leader-line {
+    margin-inline: -20px;
   }
 }
 
