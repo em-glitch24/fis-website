@@ -1782,3 +1782,31 @@ button {
     transform: none;
   }
 }
+
+.about#about {
+  /* Colors as R, G, B so the strength can be tuned in one place */
+  --about-blue: 16, 42, 107;
+  --about-red: 206, 17, 38;
+  --about-gold: 201, 162, 39;
+
+  /* 0 = no color, 0.16 = subtle, 0.3 = bold */
+  --about-strength: 0.16;
+
+  background-color: #f7f8fc;
+  background-image:
+    radial-gradient(
+      60% 50% at 0% 0%,
+      rgba(var(--about-blue), calc(var(--about-strength) * 1.4)) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 45% at 100% 100%,
+      rgba(var(--about-red), var(--about-strength)) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 35% at 100% 0%,
+      rgba(var(--about-gold), calc(var(--about-strength) * 0.9)) 0%,
+      transparent 70%
+    );
+}
