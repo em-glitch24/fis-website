@@ -1274,7 +1274,7 @@ button {
 }
 .ev-sessions li.is-next {
   background: rgba(246, 227, 161, 0.14);
-  border-left-color: var(--ev-gold);
+  border-left-color: #cecece;
 }
 .ev-sessions li.is-next .ev-session-topic::after {
   content: "Next";
@@ -1966,4 +1966,295 @@ button {
     margin-top: 4px;
     transform: rotate(-135deg);
   }
+}
+
+/* ============================================================
+   EVENTS SUMMARY (homepage): highlights + list
+   ============================================================ */
+
+.ev-head--row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+}
+.ev-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--ev-navy);
+  border: 1px solid var(--ev-navy);
+  border-radius: var(--radius);
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(16, 42, 107, 0.25);
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.ev-all:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-1px);
+}
+.ev-all:focus-visible {
+  outline: 3px solid var(--ev-gold);
+  outline-offset: 3px;
+}
+
+.events-section .btn-line {
+  background: transparent;
+  color: var(--ev-navy);
+  border-color: var(--ev-navy);
+}
+.events-section .btn-line:hover {
+  background: var(--ev-navy);
+  color: #fff;
+}
+
+/* ---------- Highlights: announcement + featured event, stacked ---------- */
+.ev-highlights {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.hl-card {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 22px;
+  background: var(--ev-card);
+  border: 1px solid var(--ev-line);
+  border-left: 5px solid rgba(122, 148, 213, 0.37);
+  border-radius: 16px;
+}
+
+/* Poster / photo on the left */
+.hl-poster {
+  display: block;
+  flex: 0 0 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(16, 42, 107, 0.22);
+}
+.hl-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hl-news .hl-poster {
+  flex-basis: 260px; /* the announcement photo is landscape, so it gets more width */
+}
+.hl-news .hl-poster img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Text on the right */
+.hl-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+.hl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.hl-label {
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ev-navy);
+  background: var(--ev-gold-soft);
+  border-radius: 999px;
+}
+.hl-label--news {
+  color: #fff;
+  background: var(--ev-navy);
+}
+.hl-date {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ev-muted);
+}
+.hl-tags .ev-status {
+  margin: 0;
+}
+
+.hl-title {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+  color: var(--ev-navy);
+}
+.hl-meta {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ev-muted);
+}
+.hl-when {
+  color: var(--ev-ink);
+}
+.hl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 6px;
+}
+.hl-actions .btn {
+  padding: 10px 20px;
+  font-size: 0.88rem;
+}
+
+/* ---------- More events list ---------- */
+.ev-more-title {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ev-muted);
+}
+.ev-list {
+  display: grid;
+  gap: 12px;
+}
+.ev-item {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 22px;
+  background: var(--ev-card);
+  border: 1px solid var(--ev-line);
+  border-radius: 14px;
+}
+.ev-item-date {
+  padding-right: 16px;
+  border-right: 3px solid var(--ev-gold);
+}
+.ev-item-date strong {
+  display: block;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1.15rem;
+  color: var(--ev-navy);
+}
+.ev-item-date span {
+  font-size: 0.8rem;
+  color: var(--ev-muted);
+}
+.ev-item-main h3 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  color: var(--ev-navy);
+}
+.ev-item-main p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ev-muted);
+}
+.ev-item .ev-status {
+  margin: 0;
+}
+.ev-item .btn {
+  padding: 10px 18px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 859px) {
+}
+@media (max-width: 640px) {
+  .hl-card {
+    gap: 14px;
+    padding: 18px;
+  }
+  .hl-poster {
+    flex-basis: 96px;
+  }
+  .hl-news {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hl-news .hl-poster {
+    flex-basis: auto;
+    width: 100%;
+  }
+  .ev-item {
+    grid-template-columns: 1fr auto;
+    gap: 10px 12px;
+    padding: 16px 18px;
+  }
+  .ev-item-date {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 0;
+    border-right: 0;
+  }
+  .ev-item-main {
+    grid-column: 1 / -1;
+  }
+  .ev-item .ev-status {
+    justify-self: start;
+  }
+  .ev-item .btn {
+    justify-self: end;
+  }
+}
+
+/* ---------- Back link (events page) ---------- */
+.ev-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 8px 18px 8px 14px;
+  border: 1px solid var(--ev-line);
+  border-radius: 999px;
+  background: var(--ev-card);
+  color: var(--ev-navy);
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+/* swap the gold bar for a left arrow */
+.ev-back::before {
+  content: "←";
+  width: auto;
+  height: auto;
+  background: none;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--ev-gold-dark);
+  transition: transform 0.15s ease;
+}
+.ev-back:hover {
+  background: var(--ev-navy);
+  border-color: var(--ev-navy);
+  color: #fff;
+}
+.ev-back:hover::before {
+  color: var(--ev-gold-soft);
+  transform: translateX(-3px);
 }

@@ -404,7 +404,7 @@ function initEvents() {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   // Badge on each event: Upcoming / Today / Happening now / Ended
-  document.querySelectorAll(".ev-row[data-start]").forEach((row) => {
+  document.querySelectorAll("[data-start]").forEach((row) => {
     const badge = row.querySelector("[data-status]");
     if (!badge) return;
 
@@ -494,6 +494,18 @@ function initEventsCollapse() {
   const sync = () => (mq.matches ? enable() : disable());
   sync();
   mq.addEventListener("change", sync);
+
+  // Open the event named in the link (e.g. events.html#lavip) on mobile
+  const openFromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const row = id && rows.find((r) => r.id === id);
+    if (!row || !row.classList.contains("is-collapsible")) return;
+    row.classList.add("is-open");
+    row.querySelector(".ev-toggle")?.setAttribute("aria-expanded", "true");
+    row.scrollIntoView({ block: "start" });
+  };
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
 }
 
 /* ---------- Contact modal (opens the visitor's email app) ---------- */
